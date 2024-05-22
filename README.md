@@ -141,21 +141,11 @@ output$aqiOverTime <- renderPlot({
     theme(legend.title = element_blank(), legend.position = "bottom", plot.title = element_text(hjust = 0.5))
 })
 ```
-4. Bar Chart: Pollutant Days for AQI
+4. Bar Chart: Pollutant Days for AQI & Pollutant Days for Death Rates
 This bar chart analyzes days with different pollutant levels in states with
  the worst AQI, providing insights into common air quality issues.
-```
-output$pollutantDaysAQI <- renderPlot({
-  pollutant_data_aqi <- combined_data %>%
-    filter(State %in% top5_aqi$State) %>%
-    select(State, `Days.CO`, `Days.NO2`, `Days.Ozone`) %>%
-    pivot_longer(cols = c(`Days.CO`, `Days.NO2`, `Days.Ozone`), names_to = "Pollutant", values_to = "Days")
-  ```
-5. Bar Chart: Pollutant Days for Death Rates
-This bar chart focuses on the number of pollutant days in states with high cancer
- death rates, exploring links between specific pollutants and health outcomes.
 We used the functions
- filter(State %in% top5_death_rates$State),
+filter(State %in% top5_death_rates$State),
 select(State, Days.CO, Days.NO2, Days.Ozone),
 pivot_longer(...), 
 geom_bar(stat = "identity", position = "stack")
@@ -163,7 +153,13 @@ scale_fill_brewer(...):
 labs(...): 
 theme_minimal(): 
 theme(axis.text.x 
-
+```
+output$pollutantDaysAQI <- renderPlot({
+  pollutant_data_aqi <- combined_data %>%
+    filter(State %in% top5_aqi$State) %>%
+    select(State, `Days.CO`, `Days.NO2`, `Days.Ozone`) %>%
+    pivot_longer(cols = c(`Days.CO`, `Days.NO2`, `Days.Ozone`), names_to = "Pollutant", values_to = "Days")
+```
 
 # Shiny App Links 
 
