@@ -42,7 +42,9 @@ deathrate <- deathrate %>%
   mutate(State = state_names[State])
 ```
 
-## User Interface (UI) Definition
+
+## Analysis 
+### User Interface (UI) Definition
 The UI is defined using the fluidPage function which includes a title, introduction, research overview, project scope, visualizations, and summary or conclusion.
 ```
 ui <- fluidPage(
@@ -54,8 +56,6 @@ ui <- fluidPage(
              h4(""),
              p(""),
 ```
-## Analysis 
-
 ### Server Logic
 Our server logic handles reading and merging datasets, data cleaning, and generating visualizations.
 ### Reading and Merging Datasets
@@ -70,11 +70,11 @@ airquality <- read_csv('AQI By State 1980-2022.csv')
 ```
 
 
-3. Merge the Datasets
+2. Merge the Datasets
 We merge the air quality and cancer death rate datasets using the left_join function on the "State" column:
 ```combined_data <- left_join(airquality, deathrate, by = "State")```
 
-4. Summarize the Data
+3. Summarize the Data
 To generate meaningful visualizations, we summarize the data by calculating the average median AQI and average cancer death rate for each state:
 ```
 state_data <- combined_data %>%
@@ -143,7 +143,7 @@ output$aqiOverTime <- renderPlot({
 ```
 4. Bar Chart: Pollutant Days for AQI & Pollutant Days for Death Rates
 This bar chart analyzes days with different pollutant levels in states with
- the worst AQI, providing insights into common air quality issues.
+the worst AQI, providing insights into common air quality issues.
 We used the functions
 filter(State %in% top5_death_rates$State),
 select(State, Days.CO, Days.NO2, Days.Ozone),
@@ -163,4 +163,5 @@ output$pollutantDaysAQI <- renderPlot({
 
 # Shiny App Links 
 https://yanetgezu.shinyapps.io/Airs/
+http://127.0.0.1:4598/
 
