@@ -7,10 +7,10 @@ library(scales)
 library(readr)
 
 # Check if the directory exists
-dir.create("~/Desktop/Air Quality and Cancer Analysis", recursive = TRUE)
+#dir.create("~/Documents/DATA/Data 332/files given/group project datas", recursive = TRUE)
 
 
-setwd("~/Desktop/Air Quality and Cancer Analysis")
+#setwd("~/Documents/DATA/Data 332/files given/group project data")
 
 # Define the user interface
 ui <- fluidPage(
@@ -20,46 +20,48 @@ ui <- fluidPage(
   
   tabsetPanel(
     tabPanel("Research Overview",
-             h4("What is Your Research?"),
-             p("This research focuses on analyzing the relationship between air quality indicators such as AQI and cancer death rates in the U.S. This study aims to identify potential environmental and policy factors that could influence public health outcomes."),
+             h4("Our Research and why we chose it"),
+             p("We became interested in analyzing cancer death rates after one day hearing on the radio that one in every two women and one in every three men will develop cancer during their lifetime. The number of cancer incidents has only been rising, and the death rate has been alarmingly high. Even though our research does not delve deeply into the casualties of cancer, we believe that this could be a good start in having a general understanding of the relationship between air quality and cancer death rates."),
              h4("Why Did You Choose This Research?"),
              p("I chose this research topic due to the increasing importance of environmental factors in public health discussions and the potential to impact policy decisions through data-driven insights.")
     ),
     tabPanel("Project Scope & Backlog",
              h4("Research Requirements"),
-             p("The research requires comprehensive data on air quality and health outcomes across different geographic locations over multiple years."),
+             p("Our cancer death rate research required access to datasets on air quality and cancer death rates in various states across the United States. It then required us to join the data, clean it, and generate insights using different kinds of charts. We then published our findings on the Shiny App."),
              h4("Scope of the Project"),
-             p("The project covers data collection, cleaning, analysis, and visualization to assess trends and correlations between air quality and cancer rates."),
+             p("Our project's scope was to explore the potential relationship between air quality and cancer mortality rates in various states across the United States from 1980 to 2022. Using publicly available Kaggle datasets, we investigated correlations between the Air Quality Index (AQI) and cancer death rates. Using statistical models and data from the previous decades, we investigated trends and the effects of AQI on cancer rates. We hoped to provide some insights into this dataset, possibly demonstrating a link between AQI and death rates. While our findings do not demonstrate that AQI is a direct cause of cancer mortality, they do suggest that more extensive research is required to fully understand the potential links and underlying causes."),
              h4("Backlog of Ideas and Concepts"),
-             p("Future enhancements may include predictive modeling to forecast trends and the expansion of data sources to include other environmental factors.")
+             p("We wanted to make a heat map with air quality days and a Point Map with AQI Ratings to see blah blah blah. However, we couldn’t get to it because of time constraints. We also found that Kentucky had a very high death rate, so we wanted to see.")
     ),
     tabPanel("Visualizations",
              tabsetPanel(
-               tabPanel("AQI vs Cancer Death Rates",
+               tabPanel("AQI vs Cancer Death Rates", 
                         plotOutput("scatterPlot"),
-                        p("This chart plots the relationship between median AQI values and cancer death rates across various states, highlighting potential correlations.")),
-               tabPanel("State Comparison",
+                        p("This scatterplot illustrates a slight positive correlation between air quality and cancer mortality, suggesting that regions with poorer air quality tend to have higher cancer death rates. The linear regression line, subtly rising as AQI increases, visually supports this trend. However, the data points display considerable variability, indicating that while air quality might influence cancer rates, other factors also play significant roles. Notably, the concentration of data points at lower AQI values suggests that most observations are from areas with relatively better air quality, while the sparser data at higher AQI values, accompanied by some outliers, may warrant further research to understand anomalies or regional specifics affecting this relationship.")),
+               tabPanel("State Comparison", 
                         plotOutput("stackedBarDeathRate"),
-                        p("This visualization compares the average AQI and cancer death rates in the top states with the highest rates, illustrating how air quality may correlate with health outcomes.")),
-               tabPanel("AQI Trends Over Time",
+                        p("The graph displays the Median AQI and cancer death rates for several states side-by-side. In each state, the AQI levels are substantially higher than the corresponding cancer death rates, illustrated with AQI represented in red and death rates in blue. This stark contrast highlights the vast difference in scale between environmental air quality measurements and mortality rates due to cancer. Notably, states like Louisiana and Mississippi, which have higher values in both categories compared to others like Kentucky and West Virginia, suggest a potential correlation where higher pollution levels may be associated with higher cancer mortality.")),
+               tabPanel("AQI Trends Over Time", 
                         plotOutput("aqiOverTime"),
-                        p("This graph shows trends in AQI over time for states with significant changes in cancer rates, indicating potential long-term environmental impacts.")),
-               tabPanel("Pollutant Days - AQI",
+                        p("The graph 'Trend of Median AQI Over Time in States with High Cancer Death Rates' visualizes the AQI trends from 1980 through the 2020s in states noted for their high cancer death rates. Notably, Kentucky exhibits a pronounced peak in AQI, suggesting periods of significantly poorer air quality relative to other states such as Arkansas, Louisiana, Mississippi, and West Virginia. This observation correlates with the fact that Kentucky also reports the highest cancer death rates among these states, suggesting a potential link between prolonged exposure to poor air quality and increased cancer mortality. This graph serves as a preliminary visual exploration, hinting at a possible association between air quality and health outcomes. While it does not establish causation, the alignment of high AQI and cancer rates in Kentucky encourages further analytical and epidemiological studies to explore this relationship more deeply.")),
+               tabPanel("Pollutant Days - AQI", 
                         plotOutput("pollutantDaysAQI"),
                         p("Analyzes days with different pollutant levels in states with the worst AQI, providing insights into common air quality issues.")),
-               tabPanel("Pollutant Days - Death Rates",
+               tabPanel("Pollutant Days - Death Rates", 
                         plotOutput("pollutantDaysDeathRates"),
-                        p("Focuses on the number of pollutant days in states with high cancer death rates, exploring links between specific pollutants and health outcomes."))
+                        p("The graph 'Number of Pollutant Days in States with Highest Median AQI' showcases the prevalence of pollutants such as CO, NO2, and Ozone in states with significant air pollution issues, including California, Indiana, North Carolina, Ohio, and Texas. When juxtaposed with previous analysis showing states with high cancer death rates, this data suggests a potential correlation between high AQI and increased cancer mortality. States with elevated levels of pollutants like Ozone, which dominates the graph, could be further investigated to understand the impact on public health, particularly cancer rates."))
              )
     ),
     tabPanel("Summary or Conclusion",
-             h4("Summary of Findings"),
-             p("This section will summarize the key findings from the study, highlighting major trends and potential areas for policy intervention."),
+             h4("Findings"),
+             p("Overall, the analysis, while not conclusively proving causation, strongly supports the hypothesis that higher AQI levels are correlated with higher cancer death rates. The consistency across multiple types of visualizations and statistical examinations underscores the potential health impacts of prolonged exposure to poor air quality."),
+             
              h4("Conclusion"),
-             p("Conclusions drawn from the research will be discussed here, along with recommendations for policymakers and public health officials.")
+             p("The research provides valuable insights into the relationship between air quality and cancer death rates, highlighting the potential health risks associated with poor air quality. While the findings do not demonstrate causation, they suggest that air quality is a significant factor that warrants further investigation and action to protect public health.")
     )
   )
 )
+
 # Define server logic
 server <- function(input, output) {
   # Read and merge datasets
@@ -185,4 +187,3 @@ server <- function(input, output) {
 
 # Run the application
 shinyApp(ui = ui, server = server)
-
