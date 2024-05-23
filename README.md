@@ -162,6 +162,6 @@ output$pollutantDaysAQI <- renderPlot({
 ```
 
 # Shiny App Links 
-https://yanetgezu.shinyapps.io/Airs/
-http://127.0.0.1:4598/
+https://tsionnigate21.shinyapps.io/Airs/
+
 
